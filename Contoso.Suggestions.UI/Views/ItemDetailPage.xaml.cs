@@ -1,4 +1,4 @@
-﻿using Contoso.Suggestions.UI.ViewModels;
+﻿using Contoso.Suggestions.Core.ViewModels;
 using System.ComponentModel;
 using Xamarin.Forms;
 

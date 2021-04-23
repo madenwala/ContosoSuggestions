@@ -1,11 +1,11 @@
-﻿using Contoso.Suggestions.UI.Models;
+﻿using Contoso.Suggestions.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI.ViewModels
+namespace Contoso.Suggestions.Core.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
@@ -49,7 +49,7 @@ namespace Contoso.Suggestions.UI.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Item newItem = new()
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,

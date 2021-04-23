@@ -1,12 +1,12 @@
-﻿using Contoso.Suggestions.UI.Models;
-using Contoso.Suggestions.UI.Services;
+﻿using Contoso.Suggestions.Core.Models;
+using Contoso.Suggestions.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI.ViewModels
+namespace Contoso.Suggestions.Core.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

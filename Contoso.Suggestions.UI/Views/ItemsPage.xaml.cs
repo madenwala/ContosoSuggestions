@@ -1,5 +1,5 @@
-﻿using Contoso.Suggestions.UI.Models;
-using Contoso.Suggestions.UI.ViewModels;
+﻿using Contoso.Suggestions.Core.Models;
+using Contoso.Suggestions.Core.ViewModels;
 using Contoso.Suggestions.UI.Views;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Contoso.Suggestions.UI.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        private readonly ItemsViewModel _viewModel;
 
         public ItemsPage()
         {

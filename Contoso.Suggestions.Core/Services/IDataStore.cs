@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Contoso.Suggestions.UI.Services
+namespace Contoso.Suggestions.Core.Services
 {
     public interface IDataStore<T>
     {

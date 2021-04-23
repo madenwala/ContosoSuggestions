@@ -14,4 +14,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Contoso.Suggestions.Core\Contoso.Suggestions.Core.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
 </Project>

@@ -1,15 +1,16 @@
-﻿using Contoso.Suggestions.UI.Models;
-using Contoso.Suggestions.UI.Views;
+﻿using Contoso.Suggestions.Core.Models;
+using Contoso.Suggestions.Core.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI.ViewModels
+namespace Contoso.Suggestions.Core.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
         private Item _selectedItem;
 
         public ObservableCollection<Item> Items { get; }
@@ -69,16 +70,12 @@ namespace Contoso.Suggestions.UI.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+            await _nav.AddItemAsync();
         }
 
         async void OnItemSelected(Item item)
         {
-            if (item == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await _nav.ItemDetails(item);
         }
     }
 }

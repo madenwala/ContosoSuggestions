@@ -1,4 +1,5 @@
-﻿using Contoso.Suggestions.UI.Services;
+﻿using Contoso.Suggestions.Core.Services;
+using Contoso.Suggestions.UI.Services;
 using Contoso.Suggestions.UI.Views;
 using System;
 using Xamarin.Forms;
@@ -14,11 +15,14 @@ namespace Contoso.Suggestions.UI
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            DependencyService.Register<NavigationService>();
+            //MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            var nav = DependencyService.Get<NavigationService>();
+            await nav.HomeAsync();
         }
 
         protected override void OnSleep()

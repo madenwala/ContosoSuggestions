@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI.ViewModels
+namespace Contoso.Suggestions.Core.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

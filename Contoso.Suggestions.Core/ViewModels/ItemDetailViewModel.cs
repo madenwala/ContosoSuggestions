@@ -1,10 +1,10 @@
-﻿using Contoso.Suggestions.UI.Models;
+﻿using Contoso.Suggestions.Core.Models;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI.ViewModels
+namespace Contoso.Suggestions.Core.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel

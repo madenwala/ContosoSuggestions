@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contoso.Suggestions.UI.Models
+namespace Contoso.Suggestions.Core.Models
 {
     public class Item
     {

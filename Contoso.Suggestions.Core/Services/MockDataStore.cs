@@ -1,10 +1,10 @@
-﻿using Contoso.Suggestions.UI.Models;
+﻿using Contoso.Suggestions.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Contoso.Suggestions.UI.Services
+namespace Contoso.Suggestions.Core.Services
 {
     public class MockDataStore : IDataStore<Item>
     {
