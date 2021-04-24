@@ -1,14 +1,5 @@
-﻿using Contoso.Suggestions.Core.Models;
-using Contoso.Suggestions.Core.ViewModels;
-using Contoso.Suggestions.UI.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Contoso.Suggestions.Core.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Contoso.Suggestions.UI.Views
 {

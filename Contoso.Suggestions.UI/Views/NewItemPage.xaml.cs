@@ -1,10 +1,6 @@
 ﻿using Contoso.Suggestions.Core.Models;
 using Contoso.Suggestions.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Contoso.Suggestions.UI.Views
 {

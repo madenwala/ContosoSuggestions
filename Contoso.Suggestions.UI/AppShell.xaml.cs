@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
@@ -11,6 +11,5 @@ namespace Contoso.Suggestions.UI
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
-
     }
 }

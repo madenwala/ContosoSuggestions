@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Contoso.Suggestions.Core.Models
+﻿namespace Contoso.Suggestions.Core.Models
 {
-    public class Item
+    public class Item : BaseModel
     {
         public string Id { get; set; }
         public string Text { get; set; }

@@ -2,9 +2,6 @@
 using Contoso.Suggestions.Core.Services;
 using Contoso.Suggestions.Core.ViewModels;
 using Contoso.Suggestions.UI.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -51,7 +48,8 @@ namespace Contoso.Suggestions.UI.Services
 
         public async Task GoBackAsync()
         {
-            await Navigation.PopAsync();
+            await Shell.Current.GoToAsync("..");
+            //await Navigation.PopAsync();
         }
 
         public async Task AddItemAsync()
@@ -74,9 +72,9 @@ namespace Contoso.Suggestions.UI.Services
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
-        //public Task ReportVehicleConcernAsync()
+        //public Task Report()
         //{
-        //    return Navigation.PushAsync(new ReportVehicleConcernView());
+        //    return Navigation.PushAsync(new ItemPage());
         //}
 
         //public void DialPhone(string number)

@@ -1,9 +1,6 @@
 ﻿using Contoso.Suggestions.Core.Services;
 using Contoso.Suggestions.UI.Services;
-using Contoso.Suggestions.UI.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Contoso.Suggestions.UI
 {
@@ -16,7 +13,6 @@ namespace Contoso.Suggestions.UI
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<NavigationService>();
-            //MainPage = new AppShell();
         }
 
         protected override async void OnStart()
