@@ -1,17 +1,12 @@
-﻿using Contoso.Suggestions.Core.Models;
-using Contoso.Suggestions.Core.ViewModels;
-using Xamarin.Forms;
+﻿using Contoso.Suggestions.Core.ViewModels;
 
 namespace Contoso.Suggestions.UI.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewItemPage : BaseView<NewItemViewModel>
     {
-        public Item Item { get; set; }
-
         public NewItemPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
         }
     }
 }

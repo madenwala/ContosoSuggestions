@@ -1,4 +1,5 @@
 ﻿using Contoso.Suggestions.Core.Models;
+using Contoso.Suggestions.Core.Services;
 using System;
 using Xamarin.Forms;
 
@@ -6,57 +7,65 @@ namespace Contoso.Suggestions.Core.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        #region Variables
+        
+        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
 
-        public NewItemViewModel()
-        {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
-        }
+        #endregion
 
-        private bool ValidateSave()
-        {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
-        }
+        #region Properties
 
-        public string Text
+        private Item _Model;
+        public Item Model
         {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => _Model;
+            private set => SetProperty(ref _Model, value);
         }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
+        #endregion
+
+        #region Constructors
+
+        public NewItemViewModel()
+        {
+            Model = new Item();
+            SaveCommand = new Command(OnSave, ValidateSave);
+            CancelCommand = new Command(OnCancel);
+            Model.PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private bool ValidateSave()
+        {
+            return Model.IsValid();
+        }
+
         private async void OnCancel()
         {
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            await _nav.GoBackAsync();
         }
 
         private async void OnSave()
         {
-            Item newItem = new()
+            try
             {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
-
-            await DataStore.AddItemAsync(newItem);
-
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+                IsBusy = true;
+                Model.Id = Guid.NewGuid().ToString();
+                await DataStore.AddItemAsync(this.Model);
+            }
+            finally
+            {
+                await _nav.GoBackAsync();
+                IsBusy = false;
+            }
         }
+
+        #endregion
     }
 }

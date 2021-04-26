@@ -48,6 +48,7 @@ namespace Contoso.Suggestions.UI.Services
 
         public async Task GoBackAsync()
         {
+            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
             //await Navigation.PopAsync();
         }

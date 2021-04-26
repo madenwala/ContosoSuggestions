@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Contoso.Suggestions.Core.Models
 {
-    public sealed class PropertyErrorsList : ObservableCollection<ValidationResult>
+    public sealed class PropertyErrorsList : List<ValidationResult>
     {
         public void Add(string propertyName, string errorMessage)
         {
