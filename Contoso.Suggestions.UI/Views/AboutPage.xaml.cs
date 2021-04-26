@@ -1,11 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Contoso.Suggestions.Core.ViewModels;
 
 namespace Contoso.Suggestions.UI.Views
 {
-    public partial class AboutPage : ContentPage
+    public partial class AboutPage : BaseView<AboutViewModel>
     {
         public AboutPage()
         {

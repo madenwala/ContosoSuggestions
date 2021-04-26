@@ -7,8 +7,9 @@ namespace Contoso.Suggestions.UI.Views
 {
     public class BaseView<T> : ContentPage where T : BaseViewModel, new()
     {
-        private T _viewModel;
+        #region Properties
 
+        private T _viewModel;
         public T ViewModel
         {
             get
@@ -36,10 +37,18 @@ namespace Contoso.Suggestions.UI.Views
             }
         }
 
+        #endregion
+
+        #region Constructors
+
         public BaseView()
         {
             ViewModel = Activator.CreateInstance(typeof(T)) as T;
         }
+
+        #endregion
+
+        #region Methods
 
         private async Task Init()
         {
@@ -56,7 +65,15 @@ namespace Contoso.Suggestions.UI.Views
 
         protected override bool OnBackButtonPressed()
         {
-            return this.ViewModel?.OnBackButtonPressed() ?? false;
+            return ViewModel?.OnBackButtonPressed() ?? false;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel?.OnAppearing();
+        }
+
+        #endregion
     }
 }

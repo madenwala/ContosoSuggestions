@@ -52,7 +52,7 @@ namespace Contoso.Suggestions.Core.ViewModels
             }
         }
 
-        public void OnAppearing()
+        public override void OnAppearing()
         {
             IsBusy = true;
             SelectedItem = null;

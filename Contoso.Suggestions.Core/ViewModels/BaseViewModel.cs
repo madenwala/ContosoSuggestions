@@ -36,6 +36,15 @@ namespace Contoso.Suggestions.Core.ViewModels
         /// <returns>Task with result.</returns>
         public virtual Task InitAsync() => Task.CompletedTask;
 
+        public virtual void OnAppearing()
+        {
+        }
+
+        public virtual bool OnBackButtonPressed()
+        {
+            return false;
+        }
+
         /// <inheritdoc />
         public void Dispose()
         {
@@ -45,11 +54,6 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         protected virtual void Dispose(bool disposing)
         {
-        }
-
-        public virtual bool OnBackButtonPressed()
-        {
-            return false;
         }
 
         #endregion

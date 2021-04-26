@@ -3,21 +3,17 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class ItemsPage : BaseView<ItemsViewModel>
     {
-        private readonly ItemsViewModel _viewModel;
-
         public ItemsPage()
         {
             InitializeComponent();
-
-            BindingContext = _viewModel = new ItemsViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.OnAppearing();
+            ViewModel.OnAppearing();
         }
     }
 }

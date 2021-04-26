@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Contoso.Suggestions.UI.Views.ItemDetailPage"
-             Title="{Binding Title}">
+<v:BaseView 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:v="clr-namespace:Contoso.Suggestions.UI.Views"
+    xmlns:vm="clr-namespace:Contoso.Suggestions.Core.ViewModels;assembly=Contoso.Suggestions.Core"
+    Title="{Binding Title}"
+    x:Class="Contoso.Suggestions.UI.Views.ItemDetailPage"
+    x:TypeArguments="vm:ItemDetailViewModel"
+    x:DataType="vm:ItemDetailViewModel">
 
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Text:" FontSize="Medium" />
@@ -11,4 +16,4 @@
         <Label Text="{Binding Description}" FontSize="Small"/>
     </StackLayout>
     
-</ContentPage>
+</v:BaseView>

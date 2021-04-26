@@ -3,12 +3,11 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class ItemDetailPage : BaseView<ItemDetailViewModel>
     {
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
         }
     }
 }
