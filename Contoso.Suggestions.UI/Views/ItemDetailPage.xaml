@@ -16,6 +16,7 @@
         <Label Text="{Binding Model.Description}" FontSize="Small"/>
 
         <Button Text="Home" Command="{Binding HomeCommand}" />
+        <Button Text="About" Command="{Binding AboutCommand}" />
     </StackLayout>
     
 </v:BaseView>

@@ -12,6 +12,8 @@ namespace Contoso.Suggestions.UI.Services
     {
         #region Properties
 
+        public bool Authenticated { get; set; }
+
         private INavigation Navigation
         {
             get
@@ -41,16 +43,21 @@ namespace Contoso.Suggestions.UI.Services
         public async Task HomeAsync()
         {
             if (Application.Current.MainPage is null)
-                Application.Current.MainPage = new AppShell(); //new NavigationPage(new MainView());
+                Application.Current.MainPage = Authenticated ? new AppShell() : new NavigationPage(new WelcomePage());
+            else if (Shell.Current is null && Authenticated)
+                Application.Current.MainPage = new AppShell();
+            else if (Shell.Current is not null && Authenticated is false)
+                Application.Current.MainPage = new NavigationPage(new WelcomePage());
             else if (Navigation is INavigation nav)
                 await nav.PopToRootAsync();
         }
 
         public async Task GoBackAsync()
         {
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
-            //await Navigation.PopAsync();
+            if (Shell.Current is not null)
+                await Shell.Current.GoToAsync(".."); // This will pop the current page off the navigation stack
+            else if (Navigation is INavigation nav)
+                await nav.PopAsync();
         }
 
         public async Task AddItemAsync()
@@ -67,45 +74,32 @@ namespace Contoso.Suggestions.UI.Services
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
-        public async Task AboutAsync()
+        public Task AboutAsync()
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+            if (Authenticated)
+                return Shell.Current.GoToAsync($"//{nameof(AboutPage)}"); // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            else
+                return Navigation.PushAsync(new AboutPage());
         }
 
-        public async Task LoginAsync()
+        public Task LoginAsync()
         {
-            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+            if (Authenticated is false)
+                return Navigation.PushAsync(new LoginPage());
+            else
+                return HomeAsync();
+            //await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
-        public async Task LogoutAsync()
+        public Task LogoutAsync()
         {
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            Authenticated = false;
+            return HomeAsync();
         }
 
         //public Task Report()
         //{
         //    return Navigation.PushAsync(new ItemPage());
-        //}
-
-        //public void DialPhone(string number)
-        //{
-        //    try
-        //    {
-        //        PhoneDialer.Open(number);
-        //    }
-        //    catch (ArgumentNullException)
-        //    {
-        //        // Number was null or white space
-        //    }
-        //    catch (FeatureNotSupportedException)
-        //    {
-        //        // Phone Dialer is not supported on this device.
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // Other error has occurred.
-        //    }
         //}
 
         #endregion

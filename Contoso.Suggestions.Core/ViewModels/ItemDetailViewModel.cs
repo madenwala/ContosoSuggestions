@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace Contoso.Suggestions.Core.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public sealed class ItemDetailViewModel : BaseViewModel
     {
         #region Variables
 
@@ -21,6 +21,9 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         private AsyncCommand _HomeCommand;
         public ICommand HomeCommand => _HomeCommand ??= new(_nav.HomeAsync);
+
+        private AsyncCommand _AboutCommand;
+        public ICommand AboutCommand => _AboutCommand ??= new(_nav.AboutAsync);
 
         private string itemId;
         public string ItemId
@@ -51,11 +54,16 @@ namespace Contoso.Suggestions.Core.ViewModels
         {
             try
             {
+                IsBusy = true;
                 Model = await DataStore.GetItemAsync(id);
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 

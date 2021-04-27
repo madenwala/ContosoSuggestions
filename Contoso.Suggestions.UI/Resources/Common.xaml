@@ -7,6 +7,7 @@
 
     <!-- Pallete -->
     <Color x:Key="Primary">#2196F3</Color>
+    <Color x:Key="Accent">#96d1ff</Color>
 
     <!-- Converters -->
     <converters:ValueToBooleanConverter x:Key="boolConverter" />

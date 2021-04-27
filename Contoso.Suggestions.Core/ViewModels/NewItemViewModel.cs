@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public sealed class NewItemViewModel : BaseViewModel
     {
         #region Variables
         

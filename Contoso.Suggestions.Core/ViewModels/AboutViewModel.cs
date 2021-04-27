@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public sealed class AboutViewModel : BaseViewModel
     {
         private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
 

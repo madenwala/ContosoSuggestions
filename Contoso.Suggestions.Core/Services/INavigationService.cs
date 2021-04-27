@@ -5,6 +5,8 @@ namespace Contoso.Suggestions.Core.Services
 {
     public interface INavigationService
     {
+        bool Authenticated { get; set; }
+
         Task HomeAsync();
         Task GoBackAsync();
 

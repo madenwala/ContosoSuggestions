@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public sealed class ItemsViewModel : BaseViewModel
     {
         private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
         private Item _selectedItem;

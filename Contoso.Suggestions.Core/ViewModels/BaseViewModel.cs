@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    public class BaseViewModel : BaseModel
+    public abstract class BaseViewModel : BaseModel
     {
         #region Properties
         

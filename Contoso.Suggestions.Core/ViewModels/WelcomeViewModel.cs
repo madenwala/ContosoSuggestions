@@ -6,25 +6,27 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    public sealed class LoginViewModel : BaseViewModel
+    public sealed class WelcomeViewModel : BaseViewModel
     {
         private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
 
-        private AsyncCommand _SubmitCommand;
-        public ICommand SubmitCommand => _SubmitCommand ??= new(SubmitAsync);
+        private AsyncCommand _AboutCommand;
+        public ICommand AboutCommand => _AboutCommand ??= new(_nav.AboutAsync);
 
-        public LoginViewModel()
+        private AsyncCommand _LoginCommand;
+        public ICommand LoginCommand => _LoginCommand ??= new(LoginAsync);
+
+        public WelcomeViewModel()
         {
-            Title = "Login to Contoso";
+            Title = "Welcome to Contoso!";
         }
 
-        private Task SubmitAsync()
+        private Task LoginAsync()
         {
             try
             {
                 IsBusy = true;
-                _nav.Authenticated = true;
-                return _nav.HomeAsync();
+                return _nav.LoginAsync();
             }
             finally
             {
