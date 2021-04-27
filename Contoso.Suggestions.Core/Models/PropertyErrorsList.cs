@@ -1,12 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Contoso.Suggestions.Core.Models
 {
-    public sealed class PropertyErrorsList : List<ValidationResult>
+    public sealed class PropertyErrorsList : ObservableCollection<ValidationResult>
     {
+        public string Separator { get; set; } = Environment.NewLine;
+
+        public PropertyErrorsList(IEnumerable<ValidationResult> errors = null, string separator = null)
+        {
+            if (separator != null)
+                Separator = separator;
+            Merge(errors);
+        }
+
         public void Add(string propertyName, string errorMessage)
         {
             if (string.IsNullOrWhiteSpace(propertyName) is false && string.IsNullOrWhiteSpace(errorMessage) is false)
@@ -15,7 +25,7 @@ namespace Contoso.Suggestions.Core.Models
 
         public void Merge(IEnumerable<ValidationResult> errors)
         {
-            if (errors != null)
+            if (errors is not null)
                 foreach (var error in errors)
                     Add(error);
         }
@@ -23,11 +33,9 @@ namespace Contoso.Suggestions.Core.Models
         public override string ToString()
         {
             if (this?.Any() ?? false)
-            {
-                var separator = ", ";
-                return string.Join(separator, this);
-            }
-            return default;
+                return string.Join(Separator, this);
+            else
+                return default;
         }
     }
 }

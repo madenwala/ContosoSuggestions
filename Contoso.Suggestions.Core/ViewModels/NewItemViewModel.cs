@@ -34,7 +34,12 @@ namespace Contoso.Suggestions.Core.ViewModels
             Model = new Item();
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            Model.PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
+            Model.PropertyChanged += (sender, e) => 
+            {
+                if (e.PropertyName is not nameof(Model.PropertyErrors)) 
+                    SaveCommand.ChangeCanExecute(); 
+            };
+            Model.PropertyErrors.Clear();
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿using Contoso.Suggestions.UI.Views;
 using Xamarin.Forms;
 
-namespace Contoso.Suggestions.UI
+namespace Contoso.Suggestions.UI.Views
 {
     public partial class AppShell : Shell
     {

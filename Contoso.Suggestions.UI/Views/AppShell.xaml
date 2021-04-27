@@ -2,8 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Contoso.Suggestions.UI.Views"
-       Title="Contoso.Suggestions.UI"
-       x:Class="Contoso.Suggestions.UI.AppShell">
+       Title="Contoso.Suggestions.UI.Views"
+       x:Class="Contoso.Suggestions.UI.Views.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.

@@ -43,12 +43,11 @@ namespace Contoso.Suggestions.Core.Models
         #endregion
     }
 
-    public abstract partial class BaseModel : INotifyPropertyChanged
+    public abstract partial class BaseModel
     {
         #region Properties
 
         private readonly PropertyErrorsList _errors = new();
-
         [JsonIgnore]
         public PropertyErrorsList PropertyErrors
         {
@@ -66,22 +65,29 @@ namespace Contoso.Suggestions.Core.Models
 
         public bool IsValid(Action<PropertyErrorsList> onIsValid, params string[] propertyNames)
         {
-            PropertyErrors.Clear();
+            try
+            {
+                PropertyErrors.Clear();
 
-            ObservableCollection<ValidationResult> errors = new();
-            var context = new ValidationContext(this);
-            Validator.TryValidateObject(this, context, errors, true);
+                ObservableCollection<ValidationResult> errors = new();
+                var context = new ValidationContext(this);
+                Validator.TryValidateObject(this, context, errors, true);
 
-            if (propertyNames.Length > 0)
-                foreach (var property in propertyNames.Where(w => !string.IsNullOrEmpty(w)))
-                    PropertyErrors.Merge(errors.Where(s => s.MemberNames.Contains(property)));
-            else
-                PropertyErrors.Merge(errors);
+                if (propertyNames.Length > 0)
+                    foreach (var property in propertyNames.Where(w => !string.IsNullOrEmpty(w)))
+                        PropertyErrors.Merge(errors.Where(s => s.MemberNames.Contains(property)));
+                else
+                    PropertyErrors.Merge(errors);
 
-            if (onIsValid is not null)
-                onIsValid(PropertyErrors);
+                if (onIsValid is not null)
+                    onIsValid(PropertyErrors);
 
-            return PropertyErrors.Count == 0;
+                return PropertyErrors.Count == 0;
+            }
+            finally
+            {
+                NotifyPropertyChanged(nameof(PropertyErrors));
+            }
         }
 
         #endregion

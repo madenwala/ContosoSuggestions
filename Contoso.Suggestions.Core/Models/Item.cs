@@ -27,32 +27,32 @@ namespace Contoso.Suggestions.Core.Models
             set => SetProperty(ref _Description, value);
         }
 
-        //private string _Password;
-        //public string Password
-        //{
-        //    get => _Password;
-        //    set => SetProperty(ref _Password, value);
-        //}
+        private string _Password;
+        public string Password
+        {
+            get => _Password;
+            set => SetProperty(ref _Password, value);
+        }
 
-        //private string _ConfirmPassword;
-        //public string ConfirmPassword
-        //{
-        //    get => _ConfirmPassword;
-        //    set => SetProperty(ref _ConfirmPassword, value);
-        //}
+        private string _ConfirmPassword;
+        public string ConfirmPassword
+        {
+            get => _ConfirmPassword;
+            set => SetProperty(ref _ConfirmPassword, value);
+        }
 
-        //private double? _Latitude;
-        //public double? Latitude
-        //{
-        //    get => _Latitude;
-        //    set => SetProperty(ref _Latitude, value);
-        //}
+        private double? _Latitude;
+        public double? Latitude
+        {
+            get => _Latitude;
+            set => SetProperty(ref _Latitude, value);
+        }
 
-        //private double? _Longitude;
-        //public double? Longitude
-        //{
-        //    get => _Longitude;
-        //    set => SetProperty(ref _Longitude, value);
-        //}
+        private double? _Longitude;
+        public double? Longitude
+        {
+            get => _Longitude;
+            set => SetProperty(ref _Longitude, value);
+        }
     }
 }

@@ -9,7 +9,13 @@
         <resources:Common />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Controls --> 
+
+    <!-- Label -->
+    <Style TargetType="Label" x:Key="ErrorLabel">
+        <Setter Property="TextColor" Value="Red" />
+    </Style>
+
+    <!-- Button --> 
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="White"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">

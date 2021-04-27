@@ -2,11 +2,15 @@
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Contoso.Suggestions.UI.Resources.Common">
+    x:Class="Contoso.Suggestions.UI.Resources.Common"
+    xmlns:converters="clr-namespace:Contoso.Suggestions.UI.Converters"    >
 
     <!-- Pallete -->
     <Color x:Key="Primary">#2196F3</Color>
-    
+
     <!-- Converters -->
-    
+    <converters:ValueToBooleanConverter x:Key="boolConverter" />
+    <converters:ValueToBooleanConverter x:Key="boolInvertConverter" InvertValue="True" />
+    <converters:ValidationResultsConverter x:Key="validationConverter" />
+
 </ResourceDictionary>

@@ -13,14 +13,28 @@
     ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
+            
             <Label Text="Text" FontSize="Medium" />
+            <Label 
+                Style="{StaticResource ErrorLabel}" 
+                Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Text}, Converter={StaticResource validationConverter}}" 
+                IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
             <Entry Text="{Binding Model.Text, Mode=TwoWay}" FontSize="Medium" />
+
             <Label Text="Description" FontSize="Medium" />
+            <Label 
+                Style="{StaticResource ErrorLabel}" 
+                Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Description}, Converter={StaticResource validationConverter}}" 
+                IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
             <Editor Text="{Binding Model.Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" />
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
+
+            <Label Style="{StaticResource ErrorLabel}" Text="{Binding Model.PropertyErrors}" />
+            
         </StackLayout>
     </ContentPage.Content>
 
