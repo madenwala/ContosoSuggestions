@@ -97,11 +97,6 @@ namespace Contoso.Suggestions.UI.Services
             return HomeAsync();
         }
 
-        //public Task Report()
-        //{
-        //    return Navigation.PushAsync(new ItemPage());
-        //}
-
         #endregion
     }
 }
