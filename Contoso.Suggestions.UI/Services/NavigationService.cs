@@ -73,6 +73,16 @@ namespace Contoso.Suggestions.UI.Services
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
+        public async Task LoginAsync()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+        }
+
+        public async Task LogoutAsync()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
         //public Task Report()
         //{
         //    return Navigation.PushAsync(new ItemPage());

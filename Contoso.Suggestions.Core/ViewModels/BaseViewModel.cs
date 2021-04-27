@@ -23,7 +23,7 @@ namespace Contoso.Suggestions.Core.ViewModels
         public string Title
         {
             get { return title; }
-            set { SetProperty(ref title, value); }
+            protected set { SetProperty(ref title, value); }
         }
 
         #endregion

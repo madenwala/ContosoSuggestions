@@ -1,5 +1,4 @@
 ﻿using Contoso.Suggestions.Core.ViewModels;
-using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI.Views
 {

@@ -1,6 +1,9 @@
 ﻿using Contoso.Suggestions.Core.Models;
+using Contoso.Suggestions.Core.Services;
 using System;
 using System.Diagnostics;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
@@ -8,7 +11,16 @@ namespace Contoso.Suggestions.Core.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
+        #region Variables
+
+        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
+
+        #endregion
+
         #region Properties
+
+        private AsyncCommand _HomeCommand;
+        public ICommand HomeCommand => _HomeCommand ??= new(_nav.HomeAsync);
 
         private string itemId;
         public string ItemId

@@ -1,4 +1,7 @@
 ﻿using Contoso.Suggestions.Core.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
@@ -7,16 +10,20 @@ namespace Contoso.Suggestions.Core.ViewModels
     {
         private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
 
-        public Command LoginCommand { get; }
+        private AsyncCommand _LoginCommand;
+        public ICommand LoginCommand => _LoginCommand ??= new(LoginAsync);
 
-        public LoginViewModel()
+        private Task LoginAsync()
         {
-            LoginCommand = new Command(OnLoginClicked);
-        }
-
-        private async void OnLoginClicked(object obj)
-        {
-            await _nav.AboutAsync();
+            try
+            {
+                IsBusy = true;
+                return _nav.LoginAsync();
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

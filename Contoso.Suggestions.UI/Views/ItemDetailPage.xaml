@@ -14,6 +14,8 @@
         <Label Text="{Binding Model.Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Model.Description}" FontSize="Small"/>
+
+        <Button Text="Home" Command="{Binding HomeCommand}" />
     </StackLayout>
     
 </v:BaseView>

@@ -8,6 +8,9 @@ namespace Contoso.Suggestions.Core.Services
         Task HomeAsync();
         Task GoBackAsync();
 
+        Task LoginAsync();
+        Task LogoutAsync();
+
         Task AboutAsync();
         Task AddItemAsync();
         Task ItemDetails(Item item);
