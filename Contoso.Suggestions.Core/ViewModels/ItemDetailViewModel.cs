@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contoso.Suggestions.Core.Models;
+using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -7,23 +8,9 @@ namespace Contoso.Suggestions.Core.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
+        #region Properties
+
         private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
-
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-
         public string ItemId
         {
             get
@@ -33,23 +20,33 @@ namespace Contoso.Suggestions.Core.ViewModels
             set
             {
                 itemId = value;
-                LoadItemId(value);
+                LoadModel(value);
             }
         }
 
-        public async void LoadItemId(string itemId)
+        private Item _Model;
+        public Item Model
+        {
+            get => _Model;
+            private set => SetProperty(ref _Model, value);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private async void LoadModel(string id)
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                Model = await DataStore.GetItemAsync(id);
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
         }
+
+        #endregion
     }
 }
