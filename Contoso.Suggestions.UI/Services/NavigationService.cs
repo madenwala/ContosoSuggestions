@@ -9,7 +9,6 @@ using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI.Services
 {
-
     public sealed class NavigationService: INavigationService
     {
         #region Properties

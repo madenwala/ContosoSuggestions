@@ -3,7 +3,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
@@ -18,15 +19,13 @@ namespace Contoso.Suggestions.Core.ViewModels
             set
             {
                 SetProperty(ref _selectedItem, value);
-                //OnItemSelected(value);
                 Navigation.ItemDetailsAsync(value);
             }
         }
 
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        //public Command AddItemCommand { get; }
-        //public Command<Item> ItemTapped { get; }
+        public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
+
+        public ICommand LoadItemsCommand { get; }
 
         #endregion
 
@@ -35,10 +34,7 @@ namespace Contoso.Suggestions.Core.ViewModels
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            //ItemTapped = new Command<Item>(OnItemSelected);
-            //AddItemCommand = new Command(OnAddItem);
+            LoadItemsCommand = new AsyncCommand(ExecuteLoadItemsCommand);
         }
 
         #endregion
@@ -51,11 +47,8 @@ namespace Contoso.Suggestions.Core.ViewModels
             {
                 IsBusy = true;
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
+                foreach (var item in await DataStore.GetItemsAsync(true))
                     Items.Add(item);
-                }
             }
             catch (Exception ex)
             {
@@ -72,16 +65,6 @@ namespace Contoso.Suggestions.Core.ViewModels
             IsBusy = true;
             SelectedItem = null;
         }
-
-        //private async void OnAddItem(object obj)
-        //{
-        //    await Navigation.AddItemAsync();
-        //}
-
-        //private async void OnItemSelected(Item item)
-        //{
-        //    await Navigation.ItemDetailsAsync(item);
-        //}
 
         #endregion
     }

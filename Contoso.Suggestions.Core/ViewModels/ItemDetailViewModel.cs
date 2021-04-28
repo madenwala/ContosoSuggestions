@@ -30,6 +30,15 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         #endregion
 
+        #region Constructors
+
+        public ItemDetailViewModel()
+        {
+            Title = "N/A";
+        }
+
+        #endregion
+
         #region Methods
 
         private async void LoadModel(string id)
@@ -38,6 +47,7 @@ namespace Contoso.Suggestions.Core.ViewModels
             {
                 IsBusy = true;
                 Model = await DataStore.GetItemAsync(id);
+                Title = Model.Text;
             }
             catch (Exception)
             {
