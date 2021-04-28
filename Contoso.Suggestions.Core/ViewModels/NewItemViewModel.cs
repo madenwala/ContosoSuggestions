@@ -19,9 +19,6 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         public Command SaveCommand { get; }
 
-        private AsyncCommand _CancelCommand;
-        public ICommand CancelCommand => _CancelCommand ??= new(Navigation.GoBackAsync);
-
         #endregion
 
         #region Constructors
@@ -41,6 +38,7 @@ namespace Contoso.Suggestions.Core.ViewModels
         #endregion
 
         #region Methods
+
         private bool ValidateSave()
         {
             return Model.IsValid();

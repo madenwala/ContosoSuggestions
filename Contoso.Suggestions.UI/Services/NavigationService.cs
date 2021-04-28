@@ -3,6 +3,8 @@ using Contoso.Suggestions.Core.Services;
 using Contoso.Suggestions.Core.ViewModels;
 using Contoso.Suggestions.UI.Views;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.UI.Services
@@ -36,6 +38,30 @@ namespace Contoso.Suggestions.UI.Services
             }
         }
 
+        private AsyncCommand _HomeCommand;
+        public ICommand NavigateHomeCommand => _HomeCommand ??= new(HomeAsync);
+
+        private AsyncCommand _BackCommand;
+        public ICommand NavigateBackCommand => _BackCommand ??= new(GoBackAsync);
+
+        private AsyncCommand _LoginCommand;
+        public ICommand NavigateLoginCommand => _LoginCommand ??= new(LoginAsync);
+
+        private AsyncCommand _LogoutCommand;
+        public ICommand NavigateLogoutCommand => _LogoutCommand ??= new(LogoutAsync);
+
+        private AsyncCommand _AboutCommand;
+        public ICommand NavigateAboutCommand => _AboutCommand ??= new(AboutAsync);
+
+        private AsyncCommand _AddItemCommand;
+        public ICommand NavigateAddItemCommand => _AddItemCommand ??= new(AddItemAsync);
+
+        private AsyncCommand<Item> _ItemDetailsCommand;
+        public ICommand NavigateItemDetailsCommand => _ItemDetailsCommand ??= new(ItemDetailsAsync);
+
+        private AsyncCommand<Item> _MapCommand;
+        public ICommand NavigateMapCommand => _MapCommand ??= new(MapAsync);
+
         #endregion
 
         #region Methods
@@ -65,13 +91,13 @@ namespace Contoso.Suggestions.UI.Services
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        public async Task ItemDetails(Item item)
+        public async Task ItemDetailsAsync(Item item)
         {
             if (item == null)
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ID)}={item.Id}");
         }
 
         public Task AboutAsync()
@@ -102,7 +128,7 @@ namespace Contoso.Suggestions.UI.Services
             if (item == null)
                 return;
 
-            await Shell.Current.GoToAsync($"{nameof(MapPage)}?{nameof(MapViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(MapPage)}?{nameof(MapViewModel.ID)}={item.Id}");
         }
 
         #endregion

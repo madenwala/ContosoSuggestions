@@ -18,14 +18,15 @@ namespace Contoso.Suggestions.Core.ViewModels
             set
             {
                 SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                //OnItemSelected(value);
+                Navigation.ItemDetailsAsync(value);
             }
         }
 
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        //public Command AddItemCommand { get; }
+        //public Command<Item> ItemTapped { get; }
 
         #endregion
 
@@ -36,10 +37,8 @@ namespace Contoso.Suggestions.Core.ViewModels
             Title = "Browse";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            ItemTapped = new Command<Item>(OnItemSelected);
-
-            AddItemCommand = new Command(OnAddItem);
+            //ItemTapped = new Command<Item>(OnItemSelected);
+            //AddItemCommand = new Command(OnAddItem);
         }
 
         #endregion
@@ -48,10 +47,9 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         private async Task ExecuteLoadItemsCommand()
         {
-            IsBusy = true;
-
             try
             {
+                IsBusy = true;
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
@@ -75,15 +73,15 @@ namespace Contoso.Suggestions.Core.ViewModels
             SelectedItem = null;
         }
 
-        private async void OnAddItem(object obj)
-        {
-            await Navigation.AddItemAsync();
-        }
+        //private async void OnAddItem(object obj)
+        //{
+        //    await Navigation.AddItemAsync();
+        //}
 
-        private async void OnItemSelected(Item item)
-        {
-            await Navigation.ItemDetails(item);
-        }
+        //private async void OnItemSelected(Item item)
+        //{
+        //    await Navigation.ItemDetailsAsync(item);
+        //}
 
         #endregion
     }

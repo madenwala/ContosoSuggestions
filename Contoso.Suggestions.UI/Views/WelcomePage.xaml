@@ -24,8 +24,8 @@
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="{Binding Title}" FontSize="16" Padding="0,0,0,0"/>
-                <Button Text="About" Command="{Binding AboutCommand}" />
-                <Button Text="Login" Command="{Binding LoginCommand}" />
+                <Button Text="About" Command="{Binding Navigation.NavigateAboutCommand}" />
+                <Button Text="Login" Command="{Binding Navigation.NavigateLoginCommand}" />
             </StackLayout>
         </ScrollView>
     </Grid>

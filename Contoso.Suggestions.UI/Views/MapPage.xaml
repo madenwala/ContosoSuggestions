@@ -11,8 +11,8 @@
 
     <StackLayout>
         <Label Text="{Binding Title}" />
-        <Button Text="About" Command="{Binding AboutCommand}" />
-        <Button Text="Go Home" Command="{Binding HomeCommand}" />
+        <Button Text="About" Command="{Binding Navigation.NavigateAboutCommand}" />
+        <Button Text="Go Home" Command="{Binding Navigation.NavigateHomeCommand}" />
     </StackLayout>
 
 </v:BaseView>

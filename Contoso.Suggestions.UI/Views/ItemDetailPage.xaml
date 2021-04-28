@@ -15,9 +15,9 @@
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Model.Description}" FontSize="Small"/>
 
-        <Button Text="Home" Command="{Binding HomeCommand}" />
-        <Button Text="About" Command="{Binding AboutCommand}" />
-        <Button Text="Map" Command="{Binding MapCommand}" />
+        <Button Text="Home" Command="{Binding Navigation.NavigateHomeCommand}" />
+        <Button Text="About" Command="{Binding Navigation.NavigateAboutCommand}" />
+        <Button Text="Map" Command="{Binding Navigation.NavigateMapCommand}" CommandParameter="{Binding Model}" />
     </StackLayout>
     
 </v:BaseView>

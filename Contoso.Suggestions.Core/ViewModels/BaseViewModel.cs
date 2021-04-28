@@ -2,6 +2,8 @@
 using Contoso.Suggestions.Core.Services;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels

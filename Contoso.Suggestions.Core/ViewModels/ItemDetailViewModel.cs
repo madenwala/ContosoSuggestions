@@ -1,37 +1,22 @@
 ﻿using Contoso.Suggestions.Core.Models;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
+    [QueryProperty(nameof(ID), nameof(ID))]
     public sealed class ItemDetailViewModel : BaseViewModel
     {
         #region Properties
 
-        private AsyncCommand _HomeCommand;
-        public ICommand HomeCommand => _HomeCommand ??= new(Navigation.HomeAsync);
-
-        private AsyncCommand _AboutCommand;
-        public ICommand AboutCommand => _AboutCommand ??= new(Navigation.AboutAsync);
-
-        private AsyncCommand _MapCommand;
-        public ICommand MapCommand => _MapCommand ??= new(async () => await Navigation.MapAsync(Model));
-
-        private string itemId;
-        public string ItemId
+        private string _id;
+        public string ID
         {
-            get
-            {
-                return itemId;
-            }
+            get => _id;
             set
             {
-                itemId = value;
+                _id = value;
                 LoadModel(value);
             }
         }
