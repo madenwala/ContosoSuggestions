@@ -1,5 +1,4 @@
 ﻿using Contoso.Suggestions.Core.Models;
-using Contoso.Suggestions.Core.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -10,13 +9,27 @@ namespace Contoso.Suggestions.Core.ViewModels
 {
     public sealed class ItemsViewModel : BaseViewModel
     {
-        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
+        #region Properties
+
         private Item _selectedItem;
+        public Item SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                SetProperty(ref _selectedItem, value);
+                OnItemSelected(value);
+            }
+        }
 
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
+
+        #endregion
+
+        #region Constructors
 
         public ItemsViewModel()
         {
@@ -29,7 +42,11 @@ namespace Contoso.Suggestions.Core.ViewModels
             AddItemCommand = new Command(OnAddItem);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        #endregion
+
+        #region Methods
+
+        private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
@@ -58,24 +75,16 @@ namespace Contoso.Suggestions.Core.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
-        }
-
         private async void OnAddItem(object obj)
         {
-            await _nav.AddItemAsync();
+            await Navigation.AddItemAsync();
         }
 
-        async void OnItemSelected(Item item)
+        private async void OnItemSelected(Item item)
         {
-            await _nav.ItemDetails(item);
+            await Navigation.ItemDetails(item);
         }
+
+        #endregion
     }
 }

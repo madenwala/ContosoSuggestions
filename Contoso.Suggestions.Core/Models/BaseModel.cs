@@ -58,6 +58,11 @@ namespace Contoso.Suggestions.Core.Models
 
         #region Methods
 
+        public bool IsValid()
+        {
+            return IsValid(null, new string[] { });
+        }
+
         public bool IsValid(params string[] propertyNames)
         {
             return IsValid(null, propertyNames);

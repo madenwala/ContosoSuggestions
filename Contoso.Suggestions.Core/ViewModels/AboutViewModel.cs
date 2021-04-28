@@ -1,5 +1,4 @@
-﻿using Contoso.Suggestions.Core.Services;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
@@ -9,15 +8,10 @@ namespace Contoso.Suggestions.Core.ViewModels
 {
     public sealed class AboutViewModel : BaseViewModel
     {
-        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
-
         public ICommand OpenWebCommand { get; }
 
         private AsyncCommand _LogoutCommand;
-        public ICommand LogoutCommand
-        {
-            get => _LogoutCommand ??= new(LogoutAsync);
-        }
+        public ICommand LogoutCommand => _LogoutCommand ??= new(LogoutAsync);
 
         public AboutViewModel()
         {
@@ -30,7 +24,7 @@ namespace Contoso.Suggestions.Core.ViewModels
             try
             {
                 IsBusy = true;
-                return _nav.LogoutAsync();
+                return Navigation.LogoutAsync();
             }
             finally
             {

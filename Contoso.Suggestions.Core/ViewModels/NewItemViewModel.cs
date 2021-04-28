@@ -1,18 +1,13 @@
 ﻿using Contoso.Suggestions.Core.Models;
-using Contoso.Suggestions.Core.Services;
 using System;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
     public sealed class NewItemViewModel : BaseViewModel
     {
-        #region Variables
-        
-        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
-
-        #endregion
-
         #region Properties
 
         private Item _Model;
@@ -23,7 +18,9 @@ namespace Contoso.Suggestions.Core.ViewModels
         }
 
         public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
+
+        private AsyncCommand _CancelCommand;
+        public ICommand CancelCommand => _CancelCommand ??= new(Navigation.GoBackAsync);
 
         #endregion
 
@@ -33,7 +30,6 @@ namespace Contoso.Suggestions.Core.ViewModels
         {
             Model = new Item();
             SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
             Model.PropertyChanged += (sender, e) => 
             {
                 if (e.PropertyName is not nameof(Model.PropertyErrors)) 
@@ -45,15 +41,9 @@ namespace Contoso.Suggestions.Core.ViewModels
         #endregion
 
         #region Methods
-
         private bool ValidateSave()
         {
             return Model.IsValid();
-        }
-
-        private async void OnCancel()
-        {
-            await _nav.GoBackAsync();
         }
 
         private async void OnSave()
@@ -66,7 +56,7 @@ namespace Contoso.Suggestions.Core.ViewModels
             }
             finally
             {
-                await _nav.GoBackAsync();
+                await Navigation.GoBackAsync();
                 IsBusy = false;
             }
         }

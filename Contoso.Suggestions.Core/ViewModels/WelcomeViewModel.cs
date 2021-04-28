@@ -1,37 +1,27 @@
-﻿using Contoso.Suggestions.Core.Services;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels
 {
     public sealed class WelcomeViewModel : BaseViewModel
     {
-        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
+        #region Properties
 
         private AsyncCommand _AboutCommand;
-        public ICommand AboutCommand => _AboutCommand ??= new(_nav.AboutAsync);
+        public ICommand AboutCommand => _AboutCommand ??= new(Navigation.AboutAsync);
 
         private AsyncCommand _LoginCommand;
-        public ICommand LoginCommand => _LoginCommand ??= new(LoginAsync);
+        public ICommand LoginCommand => _LoginCommand ??= new(Navigation.LoginAsync);
+
+        #endregion
+
+        #region Constructors
 
         public WelcomeViewModel()
         {
             Title = "Welcome to Contoso!";
         }
 
-        private Task LoginAsync()
-        {
-            try
-            {
-                IsBusy = true;
-                return _nav.LoginAsync();
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        #endregion
     }
 }

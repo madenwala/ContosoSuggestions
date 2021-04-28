@@ -9,8 +9,12 @@ namespace Contoso.Suggestions.Core.ViewModels
     public abstract class BaseViewModel : BaseModel
     {
         #region Properties
-        
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+
+        private readonly IDataStore<Item> _dataStore = DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Item> DataStore => _dataStore;
+
+        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
+        public INavigationService Navigation => _nav;
 
         bool _isBusy;
         public bool IsBusy

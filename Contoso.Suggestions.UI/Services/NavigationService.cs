@@ -12,7 +12,7 @@ namespace Contoso.Suggestions.UI.Services
     {
         #region Properties
 
-        public bool Authenticated { get; set; }
+        public bool Authenticated { get; set; } = true;
 
         private INavigation Navigation
         {

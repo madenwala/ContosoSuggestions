@@ -1,5 +1,4 @@
 ﻿using Contoso.Suggestions.Core.Models;
-using Contoso.Suggestions.Core.Services;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -11,13 +10,13 @@ namespace Contoso.Suggestions.Core.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public sealed class MapViewModel : BaseViewModel
     {
-        private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
+        #region Properties
 
         private AsyncCommand _AboutCommand;
-        public ICommand AboutCommand => _AboutCommand ??= new(_nav.AboutAsync);
+        public ICommand AboutCommand => _AboutCommand ??= new(Navigation.AboutAsync);
 
         private AsyncCommand _HomeCommand;
-        public ICommand HomeCommand => _HomeCommand ??= new(_nav.HomeAsync);
+        public ICommand HomeCommand => _HomeCommand ??= new(Navigation.HomeAsync);
 
         private string itemId;
         public string ItemId
@@ -40,10 +39,16 @@ namespace Contoso.Suggestions.Core.ViewModels
             private set => SetProperty(ref _Model, value);
         }
 
+        #endregion
+
+        #region Constructors
+
         public MapViewModel()
         {
             Title = "Maps";
         }
+
+        #endregion
 
         #region Methods
 
