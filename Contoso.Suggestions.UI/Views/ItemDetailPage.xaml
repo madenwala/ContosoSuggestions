@@ -17,6 +17,7 @@
 
         <Button Text="Home" Command="{Binding HomeCommand}" />
         <Button Text="About" Command="{Binding AboutCommand}" />
+        <Button Text="Map" Command="{Binding MapCommand}" />
     </StackLayout>
     
 </v:BaseView>

@@ -2,7 +2,6 @@
 using Contoso.Suggestions.Core.Services;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -10,24 +9,15 @@ using Xamarin.Forms;
 namespace Contoso.Suggestions.Core.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public sealed class ItemDetailViewModel : BaseViewModel
+    public sealed class MapViewModel : BaseViewModel
     {
-        #region Variables
-
         private readonly INavigationService _nav = DependencyService.Get<INavigationService>();
-
-        #endregion
-
-        #region Properties
-
-        private AsyncCommand _HomeCommand;
-        public ICommand HomeCommand => _HomeCommand ??= new(_nav.HomeAsync);
 
         private AsyncCommand _AboutCommand;
         public ICommand AboutCommand => _AboutCommand ??= new(_nav.AboutAsync);
 
-        private AsyncCommand _MapCommand;
-        public ICommand MapCommand => _MapCommand ??= new(MapAsync);
+        private AsyncCommand _HomeCommand;
+        public ICommand HomeCommand => _HomeCommand ??= new(_nav.HomeAsync);
 
         private string itemId;
         public string ItemId
@@ -50,7 +40,10 @@ namespace Contoso.Suggestions.Core.ViewModels
             private set => SetProperty(ref _Model, value);
         }
 
-        #endregion
+        public MapViewModel()
+        {
+            Title = "Maps";
+        }
 
         #region Methods
 
@@ -69,11 +62,6 @@ namespace Contoso.Suggestions.Core.ViewModels
             {
                 IsBusy = false;
             }
-        }
-
-        private Task MapAsync()
-        {
-            return _nav.MapAsync(Model);
         }
 
         #endregion

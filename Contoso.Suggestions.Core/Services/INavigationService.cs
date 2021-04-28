@@ -16,5 +16,6 @@ namespace Contoso.Suggestions.Core.Services
         Task AboutAsync();
         Task AddItemAsync();
         Task ItemDetails(Item item);
+        Task MapAsync(Item item);
     }
 }

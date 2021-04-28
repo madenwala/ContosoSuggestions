@@ -97,6 +97,14 @@ namespace Contoso.Suggestions.UI.Services
             return HomeAsync();
         }
 
+        public async Task MapAsync(Item item)
+        {
+            if (item == null)
+                return;
+
+            await Shell.Current.GoToAsync($"{nameof(MapPage)}?{nameof(MapViewModel.ItemId)}={item.Id}");
+        }
+
         #endregion
     }
 }

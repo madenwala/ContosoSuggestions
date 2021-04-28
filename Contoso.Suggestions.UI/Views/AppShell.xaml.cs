@@ -10,6 +10,7 @@ namespace Contoso.Suggestions.UI.Views
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(MapPage), typeof(MapPage));
         }
     }
 }
