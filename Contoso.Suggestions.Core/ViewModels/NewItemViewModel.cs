@@ -1,7 +1,5 @@
 ﻿using Contoso.Suggestions.Core.Models;
 using System;
-using System.Windows.Input;
-using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace Contoso.Suggestions.Core.ViewModels

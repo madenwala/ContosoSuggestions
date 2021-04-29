@@ -29,7 +29,7 @@
             <Editor Text="{Binding Model.Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding Navigation.NavigateBackCommand}" HorizontalOptions="FillAndExpand" />
+                <Button Text="Cancel" Command="{Binding Navigation.BackCommand}" HorizontalOptions="FillAndExpand" />
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
 

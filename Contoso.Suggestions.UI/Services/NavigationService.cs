@@ -38,28 +38,28 @@ namespace Contoso.Suggestions.UI.Services
         }
 
         private AsyncCommand _HomeCommand;
-        public ICommand NavigateHomeCommand => _HomeCommand ??= new(HomeAsync);
+        public ICommand HomeCommand => _HomeCommand ??= new(HomeAsync);
 
         private AsyncCommand _BackCommand;
-        public ICommand NavigateBackCommand => _BackCommand ??= new(GoBackAsync);
+        public ICommand BackCommand => _BackCommand ??= new(GoBackAsync);
 
         private AsyncCommand _LoginCommand;
-        public ICommand NavigateLoginCommand => _LoginCommand ??= new(LoginAsync);
+        public ICommand LoginCommand => _LoginCommand ??= new(LoginAsync);
 
         private AsyncCommand _LogoutCommand;
-        public ICommand NavigateLogoutCommand => _LogoutCommand ??= new(LogoutAsync);
+        public ICommand LogoutCommand => _LogoutCommand ??= new(LogoutAsync);
 
         private AsyncCommand _AboutCommand;
-        public ICommand NavigateAboutCommand => _AboutCommand ??= new(AboutAsync);
+        public ICommand AboutCommand => _AboutCommand ??= new(AboutAsync);
 
         private AsyncCommand _AddItemCommand;
-        public ICommand NavigateAddItemCommand => _AddItemCommand ??= new(AddItemAsync);
+        public ICommand AddItemCommand => _AddItemCommand ??= new(AddItemAsync);
 
         private AsyncCommand<Item> _ItemDetailsCommand;
-        public ICommand NavigateItemDetailsCommand => _ItemDetailsCommand ??= new(ItemDetailsAsync);
+        public ICommand ItemDetailsCommand => _ItemDetailsCommand ??= new(ItemDetailsAsync);
 
         private AsyncCommand<Item> _MapCommand;
-        public ICommand NavigateMapCommand => _MapCommand ??= new(MapAsync);
+        public ICommand MapCommand => _MapCommand ??= new(MapAsync);
 
         #endregion
 

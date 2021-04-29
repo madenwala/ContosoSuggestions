@@ -9,27 +9,27 @@ namespace Contoso.Suggestions.Core.Services
         bool Authenticated { get; set; }
 
         Task HomeAsync();
-        ICommand NavigateHomeCommand { get; }
+        ICommand HomeCommand { get; }
 
         Task GoBackAsync();
-        ICommand NavigateBackCommand { get; }
+        ICommand BackCommand { get; }
 
         Task LoginAsync();
-        ICommand NavigateLoginCommand { get; }
+        ICommand LoginCommand { get; }
 
         Task LogoutAsync();
-        ICommand NavigateLogoutCommand { get; }
+        ICommand LogoutCommand { get; }
 
         Task AboutAsync();
-        ICommand NavigateAboutCommand { get; }
+        ICommand AboutCommand { get; }
 
         Task AddItemAsync();
-        ICommand NavigateAddItemCommand { get; }
+        ICommand AddItemCommand { get; }
 
         Task ItemDetailsAsync(Item item);
-        ICommand NavigateItemDetailsCommand { get; }
+        ICommand ItemDetailsCommand { get; }
 
         Task MapAsync(Item item);
-        ICommand NavigateMapCommand { get; }
+        ICommand MapCommand { get; }
     }
 }
