@@ -52,7 +52,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private double? _Longitude;
-        [Range(-180, 180)]
+        [Required, Range(-180, 180)]
         public double? Longitude
         {
             get => _Longitude;

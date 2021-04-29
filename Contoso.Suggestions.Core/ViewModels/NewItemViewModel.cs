@@ -24,7 +24,8 @@ namespace Contoso.Suggestions.Core.ViewModels
         public NewItemViewModel()
         {
             Model = new Item();
-            SaveCommand = new Command(OnSave, ValidateSave);
+            SaveCommand = new Command(OnSave);
+            //SaveCommand = new Command(OnSave, ValidateSave);
             Model.PropertyChanged += (sender, e) => 
             {
                 if (e.PropertyName is not nameof(Model.PropertyErrors)) 
@@ -44,6 +45,9 @@ namespace Contoso.Suggestions.Core.ViewModels
 
         private async void OnSave()
         {
+            if (Model.IsValid() is false)
+                return;
+
             try
             {
                 IsBusy = true;

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:v="clr-namespace:Contoso.Suggestions.UI.Views"
     xmlns:vm="clr-namespace:Contoso.Suggestions.Core.ViewModels;assembly=Contoso.Suggestions.Core"
+    xmlns:behaviors="clr-namespace:Contoso.Suggestions.UI.Behaviors"
     Title="{Binding Title}"
     x:Class="Contoso.Suggestions.UI.Views.NewItemPage"
     x:TypeArguments="vm:NewItemViewModel"
@@ -12,44 +13,61 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            
-            <Label Text="Text" FontSize="Medium" />
-            <Label 
+
+        <ScrollView>
+            <StackLayout Spacing="3" Padding="15">
+
+                <Label Text="Text" FontSize="Medium" />
+                <Label 
                 Style="{StaticResource ErrorLabel}" 
                 Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Text}, Converter={StaticResource validationConverter}}" 
                 IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
-            <Entry Text="{Binding Model.Text, Mode=TwoWay}" FontSize="Medium" />
+                <Entry Text="{Binding Model.Text, Mode=TwoWay}" FontSize="Medium" />
 
-            <Label Text="Description" FontSize="Medium" />
-            <Label 
+                <Label Text="Description" FontSize="Medium" />
+                <Label 
                 Style="{StaticResource ErrorLabel}" 
                 Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Description}, Converter={StaticResource validationConverter}}" 
                 IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
-            <Editor Text="{Binding Model.Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+                <Editor Text="{Binding Model.Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
 
-            <Label Text="Password" FontSize="Medium" />
-            <Label 
+                <Label Text="Password" FontSize="Medium" />
+                <Label 
                 Style="{StaticResource ErrorLabel}" 
                 Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Password}, Converter={StaticResource validationConverter}}" 
                 IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
-            <Entry Text="{Binding Model.Password, Mode=TwoWay}" IsPassword="True" FontSize="Medium" Margin="0" />
+                <Entry Text="{Binding Model.Password, Mode=TwoWay}" IsPassword="True" FontSize="Medium" Margin="0"  />
 
-            <Label Text="Confirm Password" FontSize="Medium" />
-            <Label 
+                <Label Text="Confirm Password" FontSize="Medium" />
+                <Label 
                 Style="{StaticResource ErrorLabel}" 
                 Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.ConfirmPassword}, Converter={StaticResource validationConverter}}" 
                 IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
-            <Entry Text="{Binding Model.ConfirmPassword, Mode=TwoWay}" IsPassword="True" FontSize="Medium" Margin="0" />
-            
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding Navigation.BackCommand}" HorizontalOptions="FillAndExpand" />
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" />
-            </StackLayout>
+                <Entry Text="{Binding Model.ConfirmPassword, Mode=TwoWay}" IsPassword="True" FontSize="Medium" Margin="0" />
 
-            <Label Style="{StaticResource ErrorLabel}" Text="{Binding Model.PropertyErrors}" />
-            
-        </StackLayout>
+                <Label Text="Latitude" FontSize="Medium" />
+                <Label 
+                Style="{StaticResource ErrorLabel}" 
+                Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Latitude}, Converter={StaticResource validationConverter}}" 
+                IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
+                <Entry Text="{Binding Model.Latitude, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+
+                <Label Text="Longitude" FontSize="Medium" />
+                <Label 
+                Style="{StaticResource ErrorLabel}" 
+                Text="{Binding Model.PropertyErrors, ConverterParameter={Binding Model.Longitude}, Converter={StaticResource validationConverter}}" 
+                IsVisible="{Binding Source={RelativeSource Self}, Path=Text, Converter={StaticResource boolConverter}}" />
+                <Entry Text="{Binding Model.Longitude, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancel" Command="{Binding Navigation.BackCommand}" HorizontalOptions="FillAndExpand" />
+                    <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+
+                <Label Style="{StaticResource ErrorLabel}" Text="{Binding Model.PropertyErrors}" />
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 
 </v:BaseView>
