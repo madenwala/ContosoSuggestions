@@ -12,7 +12,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private string _Text;
-        [Required]
+        [Required, MinLength(3), MaxLength(6)]
         public string Text
         {
             get => _Text;
@@ -20,7 +20,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private string _Description;
-        [Required]
+        [Required, MaxLength(10)]
         public string Description
         {
             get => _Description;
@@ -28,6 +28,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private string _Password;
+        [Required]
         public string Password
         {
             get => _Password;
@@ -35,6 +36,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private string _ConfirmPassword;
+        [Compare(nameof(Password))]
         public string ConfirmPassword
         {
             get => _ConfirmPassword;
@@ -42,6 +44,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private double? _Latitude;
+        [Range(-90, 90)]
         public double? Latitude
         {
             get => _Latitude;
@@ -49,6 +52,7 @@ namespace Contoso.Suggestions.Core.Models
         }
 
         private double? _Longitude;
+        [Range(-180, 180)]
         public double? Longitude
         {
             get => _Longitude;
