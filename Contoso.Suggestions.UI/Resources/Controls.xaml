@@ -9,13 +9,24 @@
         <resources:Common />
     </ResourceDictionary.MergedDictionaries>
 
-
     <!-- Label -->
+    <Style TargetType="Label" x:Key="BaseLabel">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+    <Style TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+    </Style>
+    <Style TargetType="Label" x:Key="ApplicationLabel" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="TextColor" Value="LightBlue" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="Large" />
+    </Style>
     <Style TargetType="Label" x:Key="ErrorLabel">
         <Setter Property="TextColor" Value="Red" />
     </Style>
 
-    <!-- Button --> 
+    <!-- Button -->
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="White"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -35,5 +46,28 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-    
+
+    <!-- ContentPage -->
+    <Style TargetType="NavigationPage" ApplyToDerivedTypes="true" />
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="true">
+        <!--<Setter Property="NavigationPage.HasBackButton" Value="False" />
+        <Setter Property="NavigationPage.TitleView">
+            <Label Text="ApplicationLabel" />
+        </Setter>-->
+    </Style>
+
+    <!--<Style x:Key="BaseStyle" TargetType="Element">
+        <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="Shell.ForegroundColor" Value="White" />
+        <Setter Property="Shell.TitleColor" Value="White" />
+        <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+        <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+        <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+        <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+    </Style>
+    <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />-->
+
 </ResourceDictionary>
